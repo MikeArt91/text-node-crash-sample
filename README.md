@@ -15,8 +15,9 @@ Reproducing the crash consistently proved to be challenging. In our specific ins
 Required conditions for the crash are:
 1. Using `LazyColumn`
 2. A specific `Text` element implementation, such as `BasicText` wrapped within the `TextButton`
-3. A subset of the `Text` elements reside outside the currently viewable portion of the screen.
-4. Triggering rendering events by changing the text, using modifiers like `Modifier.alignByBaseline()` and scrolling through the list at the same time
+3. `TextButton` should be located within the `Row` with `Modifier.alignByBaseline()`
+4. Some more `Text` elements present in the list and located outside the visible portion of the screen.
+5. Triggering rendering events by changing the text and scrolling through the list at the same time
 
 All those conditions combined might result in this crash:
 ```
